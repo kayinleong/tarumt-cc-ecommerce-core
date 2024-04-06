@@ -1,0 +1,27 @@
+name: .NET Core Deploy to IIS
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: dotnet build
+      run: dotnet build --configuration Release .\Tarumt.CC.Ecommerce.Core\
+
+    - name: dotnet publish 
+      run: |
+        dotnet publish -c Release .\Tarumt.CC.Ecommerce.Core\ /p:PublishProfile=FolderProfile
+        
+    # - name: Deploy to IIS
+    #   run: |
+    #     iisreset /stop
+    #     Copy-Item ./tarumt-cc-ecommerce-core/* C:/inetpub/wwwroot/tarumt-cc-ecommerce-core -Recurse -Force
+    #     iisreset /start
+    
+    # - name: Curl the website as a smoke test
+    #   run: curl http://localhost:8010/swagger/index.html
