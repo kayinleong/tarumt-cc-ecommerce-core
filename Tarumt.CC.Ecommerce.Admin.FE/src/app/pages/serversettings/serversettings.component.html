@@ -1,0 +1,63 @@
+<h1 class="mb-3 text-2xl font-bold text-gray-600">Server Settings</h1>
+
+<div *ngIf="serverSettings === undefined" class="flex justify-center w-full mt-20">
+  <component-loader />
+</div>
+
+<div *ngIf="serverSettings !== undefined">
+  <form (submit)="formSubmit()">
+    <h2 class="mb-2 text-xl font-semibold text-gray-600">User Server Settings</h2>
+    <div class="flex items-center mb-4">
+      <input [(ngModel)]="serverSettings.user_server_settings.required_user_address" name="required_user_address" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="default-checkbox" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">
+        Required User Address
+      </label>
+    </div>
+
+    <div class="flex items-center mb-4">
+      <input [(ngModel)]="serverSettings.user_server_settings.required_strong_password_validation" name="required_strong_password_validation" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="default-checkbox" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">
+        Required Strong Password Validation
+      </label>
+    </div>
+
+    <div class="mb-4">
+      <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Updated At</label>
+      <input [value]="serverSettings.user_server_settings.updated_at" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+    </div>
+
+    <h2 class="mt-8 mb-2 text-xl font-semibold text-gray-600">User Portal Server Settings</h2>
+    <div class="flex items-center mb-4">
+      <input [(ngModel)]="serverSettings.user_portal_server_settings.enable_login_page" name="enable_login_page" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="default-checkbox" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">
+        Enable login page
+      </label>
+    </div>
+
+    <div class="flex items-center mb-4">
+      <input [(ngModel)]="serverSettings.user_portal_server_settings.enable_password_forget" name="enable_password_forget" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="default-checkbox" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">
+        Enable password forget page
+      </label>
+    </div>
+
+    <div class="flex items-center mb-4">
+      <input [(ngModel)]="serverSettings.user_portal_server_settings.enable_register_page" name="enable_register_page" id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="default-checkbox" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">
+        Enable register page
+      </label>
+    </div>
+
+    <div class="mb-4">
+      <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Updated At</label>
+      <input [value]="serverSettings.user_portal_server_settings.updated_at" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+    </div>
+
+    <div class="flex justify-between mt-10">
+      <span></span>
+      <button type="submit" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        Update All
+      </button>
+    </div>
+  </form>
+</div>

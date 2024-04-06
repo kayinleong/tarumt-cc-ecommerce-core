@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Ky.Web.CMS.SharedLibarary/1.0.0": {
+        "runtime": {
+          "Ky.Web.CMS.SharedLibarary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Ky.Web.CMS.SharedLibarary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

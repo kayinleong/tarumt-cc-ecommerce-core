@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Ky.Web.CMS.Gateway.props" />
+</Project>

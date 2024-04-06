@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "GeNZ8htDjf3zMW5UtibIDx5CSQqGChukBe1mJdxIQh8=",
+  "Source": "Ky.Web.CMS.Gateway",
+  "BasePath": "_content/Ky.Web.CMS.Gateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

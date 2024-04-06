@@ -1,0 +1,262 @@
+<h1 class="mb-3 text-2xl font-bold text-gray-600">Products</h1>
+
+<div *ngIf="products === undefined && productCategories === undefined" class="flex justify-center w-full mt-20">
+  <component-loader />
+</div>
+
+<div *ngIf="products !== undefined && productCategories !== undefined" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white rtl:text-right dark:text-white dark:bg-gray-800">
+      <div id="accordion-collapse" data-accordion="collapse">
+        <h2 id="accordion-collapse-heading-1">
+          <button type="button" class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-b-0 border-gray-200 rtl:text-right rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="false" aria-controls="accordion-collapse-body-1">
+            <span>Search</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+            <form (submit)="onSearch()">
+              <div class="flex flex-col md:gap-5 md:flex-row">
+                <div class="w-full mb-4">
+                  <label for="page_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Page Number
+                  </label>
+                  <input [(ngModel)]="pageNumber" type="number" name="page_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+                <div class="w-full mb-4">
+                  <label for="page_size" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Page Size
+                  </label>
+                  <input [(ngModel)]="pageSize" type="number" name="pageSize" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="keyword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Keyword
+                </label>
+                <input [(ngModel)]="keyword" type="text" name="keyword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+
+              <div class="flex items-center mb-4">
+                <input [(ngModel)]="isDeleted" name="is_deleted" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="is_deleted" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">Is Deleted?</label>
+              </div>
+
+              <div class="flex justify-between">
+                <span></span>
+                <button type="submit" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <h2 id="accordion-collapse-heading-2">
+          <button type="button" class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-b-0 border-gray-200 rtl:text-right focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+            <span>Create</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+          <div class="p-5 border border-gray-200 dark:border-gray-700">
+            <form (submit)="onCreate()">
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Name
+                </label>
+                <input [(ngModel)]="product.name" name="name" type="text" autocomplete="off" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Short Name
+                </label>
+                <input [(ngModel)]="product.short_name" name="short_name" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Count
+                </label>
+                <input [(ngModel)]="product.count" name="count" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                <textarea [(ngModel)]="product.description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                <div class="flex items-center justify-center w-full">
+                  <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                      <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                      </svg>
+                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                    </div>
+                    <input (change)="onFileChange($event)" id="dropzone-file" type="file" class="hidden" />
+                  </label>
+                </div>
+              </div>
+
+              <h3 class="mt-10 mb-2 text-xl font-semibold text-gray-600">Pricing</h3>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Price
+                </label>
+                <input [(ngModel)]="product.price" name="price" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Discount Rate (Percentage)
+                </label>
+                <input [(ngModel)]="product.discount_rate" name="short_name" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div class="flex justify-between mb-3">
+                <div class="block w-full mb-2 font-semibold text-gray-600 text-md dark:text-white">
+                  Final Price
+                </div>
+                <div class="w-full text-right">
+                  <span class="text-lg font-semibold text-gray-900 dark:text-white">
+                    RM {{product.price - (product.price * product.discount_rate / 100)}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select one or more category</label>
+                <select [(ngModel)]="product.categories_id" name="categories_id" multiple id="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option *ngFor="let productCategory of productCategories.responses" [value]="productCategory.id">{{ productCategory.name }}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Start at
+                </label>
+                <input [(ngModel)]="product.start_at" name="start_at" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Expired at
+                </label>
+                <input [(ngModel)]="product.expired_at" name="expired_at" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+
+              <div *ngIf="errors.length > 0" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <ul class="pl-4 list-disc">
+                  <li *ngFor="let error of errors">{{error}}</li>
+                </ul>
+              </div>
+
+              <div class="flex justify-center md:justify-between">
+                <span></span>
+                <button type="submit" class="py-2.5 px-5 w-[100px] text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <h2 id="accordion-collapse-heading-3">
+          <button type="button" class="flex items-center justify-between w-full gap-3 p-5 font-medium text-gray-500 border border-gray-200 rtl:text-right focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+            <span>Create Category</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+          <div class="p-5 border border-gray-200 dark:border-gray-700">
+            <form (submit)="onProductCategoryCreate()">
+              <div class="mb-3">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Name
+                </label>
+                <input [(ngModel)]="productCategory.name" name="productcategory_name" type="text" autocomplete="off" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+
+              <div *ngIf="product_categories_errors.length > 0" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <ul class="pl-4 list-disc">
+                  <li *ngFor="let error of product_categories_errors">{{error}}</li>
+                </ul>
+              </div>
+
+              <div class="flex justify-center md:justify-between">
+                <span></span>
+                <button type="submit" class="py-2.5 px-5 w-[100px] text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          ID
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Name
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Short Name
+        </th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products.responses" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{ product.id }}
+        </th>
+        <td class="px-6 py-4">
+          {{ product.name }}
+        </td>
+        <td class="px-6 py-4">
+          {{ product.short_name }}
+        </td>
+        <td class="px-6 py-4 text-right">
+          <a [routerLink]="product.id" [queryParams]="{ is_deleted: product.is_deleted }" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav class="flex flex-col items-center w-full mt-20 mb-5">
+    <span class="w-full mb-3 text-sm text-center text-gray-700 dark:text-gray-400">
+      Showing <span class="font-semibold text-gray-900 dark:text-white">{{ pageNumber }}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{ products.total_pages }}</span> Pages
+    </span>
+    <ul class="flex items-center h-10 -space-x-px text-base">
+      <li>
+        <button [ngClass]="{
+          'cursor-not-allowed': !products.has_previous,
+          'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white': products.has_previous
+        }" (click)="onPreviousPage()" class="flex items-center justify-center h-10 px-4 leading-tight text-gray-500 bg-white border border-gray-300 ms-0 border-e-0 rounded-s-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ">
+          <span class="sr-only">Previous</span>
+          <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button [ngClass]="{
+          'cursor-not-allowed': !products.has_next,
+          'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white': products.has_next
+        }" (click)="onNextPage()" class="flex items-center justify-center h-10 px-4 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
+          <span class="sr-only">Next</span>
+          <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,11 @@
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\bin\Debug\net7.0\Ky.Web.CMS.SharedLibarary.deps.json
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\bin\Debug\net7.0\Ky.Web.CMS.SharedLibarary.dll
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\bin\Debug\net7.0\Ky.Web.CMS.SharedLibarary.pdb
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\Ky.Web.CMS.SharedLibarary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\Ky.Web.CMS.SharedLibarary.AssemblyInfoInputs.cache
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\Ky.Web.CMS.SharedLibarary.AssemblyInfo.cs
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\Ky.Web.CMS.SharedLibarary.csproj.CoreCompileInputs.cache
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\Ky.Web.CMS.SharedLibarary.dll
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\refint\Ky.Web.CMS.SharedLibarary.dll
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\Ky.Web.CMS.SharedLibarary.pdb
+D:\Programming\Personal Projects\Ky.Web.CMS\Ky.Web.CMS.SharedLibarary\obj\Debug\net7.0\ref\Ky.Web.CMS.SharedLibarary.dll
