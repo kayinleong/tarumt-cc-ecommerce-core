@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Primitives
+@inject IViewLocalizer ViewLocalizer
+@model ConsentFormViewModel
+@{
+    var scopeList = Model.Scope.Split(" ");
+    ViewData["Title"] = ViewLocalizer["PageTitle"];
+}
+
+<div class="flex flex-row justify-center mt-10">
+    <div class="flex flex-col w-[400px]">
+        <div class="block w-full p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">@ViewLocalizer["Title"]</h5>
+            <div class="font-normal text-gray-700 dark:text-gray-400">
+                <form asp-action="Authorize" asp-controller="OpenID" method="post" id="authForm" class="flex flex-col gap-4">
+                    <div>
+                        @ViewLocalizer["Card_Consent_Description_01"] <strong>@Model.ApplicationName</strong>
+                        @ViewLocalizer["Card_Consent_Description_02"]
+
+                        <br />
+
+                        @ViewLocalizer["Card_Consent_Description_03"]:
+                    </div>
+
+                    <ul class="list-disc pl-8">
+                        @foreach (var scope in scopeList)
+                        {
+                            switch (scope)
+                            {
+                                case "openid":
+                                    <li>@ViewLocalizer["Card_Consent_OpenID"]</li>
+                                    break;
+
+                                case "profile":
+                                    <li>@ViewLocalizer["Card_Consent_Profile"]</li>
+                                    break;
+
+                                case "email":
+                                    <li>@ViewLocalizer["Card_Consent_Email"]</li>
+                                    break;
+
+                                case "address":
+                                    if (ViewBag.RequiredUserAddress == true)
+                                    {
+                                        <li>@ViewLocalizer["Card_Consent_Address"]</li>
+                                    }
+                                    break;
+
+                                case "phone":
+                                    <li>@ViewLocalizer["Card_Consent_Phone"]</li>
+                                    break;
+
+                                case "roles":
+                                    break;
+
+                                case "offline_access":
+                                    <li>@ViewLocalizer["Card_Consent_Offline_Access"]</li>
+                                    break;
+
+                                default:
+                                    <li>@scope</li>
+                                    break;
+                            }
+                            
+                        }
+                    </ul>
+
+                    @* Flow the request parameters so they can be received by the Accept/Reject actions *@
+                    @foreach (var parameter in Context.Request.HasFormContentType ? (IEnumerable<KeyValuePair<string, StringValues>>)Context.Request.Form : Context.Request.Query)
+                    {
+                        <input type="hidden" name="@parameter.Key" value="@parameter.Value" />
+                    }
+                    <input type="hidden" name="consent.Accept" value="@ViewLocalizer["Card_Consent_AcceptButton"]" />
+
+                    <div class="flex justify-between">
+                        <span></span>
+                        <div>
+                            <input type="submit" name="consent.Deny" value="@ViewLocalizer["Card_Consent_DenyButton"]" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2" />
+                            <input type="submit" name="consent.Accept" value="@ViewLocalizer["Card_Consent_AcceptButton"]" class="flex justify-between text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
