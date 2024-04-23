@@ -1,0 +1,165 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\css\\app-build.css",
+      "PackagePath": "staticwebassets\\css\\app-build.css"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\organiser\\1dc2ffe1-b7dc-413c-ba40-371744ee495c_Kayin_White_Small.png",
+      "PackagePath": "staticwebassets\\files\\organiser\\1dc2ffe1-b7dc-413c-ba40-371744ee495c_Kayin_White_Small.png"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\organiser\\7088b78a-0031-425f-9340-d7dc1cc16578_sample.mp3",
+      "PackagePath": "staticwebassets\\files\\organiser\\7088b78a-0031-425f-9340-d7dc1cc16578_sample.mp3"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\organiser\\c6a46c09-b92a-4c17-942d-38df5b7316f1_Successful Algorithmic Trading.pdf",
+      "PackagePath": "staticwebassets\\files\\organiser\\c6a46c09-b92a-4c17-942d-38df5b7316f1_Successful Algorithmic Trading.pdf"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\organiser\\d6f0ecb5-d150-45b0-9c54-9a4cb700cd3a_Kayin_White_Small.png",
+      "PackagePath": "staticwebassets\\files\\organiser\\d6f0ecb5-d150-45b0-9c54-9a4cb700cd3a_Kayin_White_Small.png"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\organiser\\d81b7621-6b90-4ae4-b4be-a62e08e25d74_Kayin_White_Small.png",
+      "PackagePath": "staticwebassets\\files\\organiser\\d81b7621-6b90-4ae4-b4be-a62e08e25d74_Kayin_White_Small.png"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\00edf299-0d02-4733-a5ee-f68593018396_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\00edf299-0d02-4733-a5ee-f68593018396_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\1099b2b9-b7dd-47f3-93e4-5c0cff9d433a_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\1099b2b9-b7dd-47f3-93e4-5c0cff9d433a_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\1550b365-1931-4712-950a-d99531510db7_food.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\1550b365-1931-4712-950a-d99531510db7_food.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\1da13f2e-2b52-492f-a526-c6a91ad05c4f_cosmetic.jpg",
+      "PackagePath": "staticwebassets\\files\\product\\1da13f2e-2b52-492f-a526-c6a91ad05c4f_cosmetic.jpg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\27f66e78-b334-4968-8a79-a5534a28ec4d_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\27f66e78-b334-4968-8a79-a5534a28ec4d_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\3aadec67-78b2-4039-b49b-56dad43f92d6_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\3aadec67-78b2-4039-b49b-56dad43f92d6_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\4903487c-c199-44cf-8aa2-d37bc092ef14_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\4903487c-c199-44cf-8aa2-d37bc092ef14_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\5248ff1d-04b1-4af1-b567-050652e7dfba_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\5248ff1d-04b1-4af1-b567-050652e7dfba_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\5605f493-e38c-464f-8067-6876bfd6dd46_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\5605f493-e38c-464f-8067-6876bfd6dd46_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\589db5f2-366c-46db-9089-5db1760d85a1_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\589db5f2-366c-46db-9089-5db1760d85a1_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\58da2d35-62ba-4c90-bdb7-72ca4c056d3a_cloth.jpg",
+      "PackagePath": "staticwebassets\\files\\product\\58da2d35-62ba-4c90-bdb7-72ca4c056d3a_cloth.jpg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\5acbe0d2-6b80-4932-9626-72c4846aeee2_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\5acbe0d2-6b80-4932-9626-72c4846aeee2_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\697421e8-1c97-42c0-ae3d-d17576361c2f_flight ticket.jpg",
+      "PackagePath": "staticwebassets\\files\\product\\697421e8-1c97-42c0-ae3d-d17576361c2f_flight ticket.jpg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\7027acb4-477e-4f70-8a85-57af78c832c9_flight and food.jpg",
+      "PackagePath": "staticwebassets\\files\\product\\7027acb4-477e-4f70-8a85-57af78c832c9_flight and food.jpg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\75e031d9-6135-47d4-a1eb-ab4ce3d6de9e_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\75e031d9-6135-47d4-a1eb-ab4ce3d6de9e_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\83f17aff-9fa6-44fb-8d4e-09be4095705e_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\83f17aff-9fa6-44fb-8d4e-09be4095705e_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\91d90fdd-64f0-4057-84d2-e364f01187c0_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\91d90fdd-64f0-4057-84d2-e364f01187c0_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\9c3c0da5-b605-4385-9a98-d082d2a91ff6_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\9c3c0da5-b605-4385-9a98-d082d2a91ff6_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\9f6cf31e-90f1-498e-8ad4-0e65ad4b0b95_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\9f6cf31e-90f1-498e-8ad4-0e65ad4b0b95_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\c7796619-86c5-4586-828b-9cab6a4894b2_cloth and cosmetic.jpg",
+      "PackagePath": "staticwebassets\\files\\product\\c7796619-86c5-4586-828b-9cab6a4894b2_cloth and cosmetic.jpg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\c7a4eceb-ed0d-42e5-ba84-9667a31f22cb_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\c7a4eceb-ed0d-42e5-ba84-9667a31f22cb_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\ca318f6b-cd85-4631-abf4-ffd13aec2dfe_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\ca318f6b-cd85-4631-abf4-ffd13aec2dfe_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\cf1dd5d6-8f50-45bc-ba2f-6ee83d17dd92_travel.jpg",
+      "PackagePath": "staticwebassets\\files\\product\\cf1dd5d6-8f50-45bc-ba2f-6ee83d17dd92_travel.jpg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\d42c009c-5c74-4c82-8d69-9c43279c2ff0_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\d42c009c-5c74-4c82-8d69-9c43279c2ff0_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\e0b7eef1-da76-4489-8f51-b37d7012a7c4_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\e0b7eef1-da76-4489-8f51-b37d7012a7c4_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\e17b16c8-1afc-4098-9472-0b70083a4a09_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\e17b16c8-1afc-4098-9472-0b70083a4a09_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\e66b274e-d4be-46c4-a362-71a37c05db87_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\e66b274e-d4be-46c4-a362-71a37c05db87_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\e8fb1137-e56b-4a75-8f2f-d5fa3ad02b77_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\e8fb1137-e56b-4a75-8f2f-d5fa3ad02b77_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "E:\\Programming\\Projects\\Tarumt.CC.Ecommerce\\Tarumt.CC.Ecommerce.Core\\wwwroot\\files\\product\\ffed814f-2449-4437-a355-17aa4ad9a7ea_Gemini_Generated_Image_5teagy5teagy5tea.jpeg",
+      "PackagePath": "staticwebassets\\files\\product\\ffed814f-2449-4437-a355-17aa4ad9a7ea_Gemini_Generated_Image_5teagy5teagy5tea.jpeg"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.Tarumt.CC.Ecommerce.Core.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.Tarumt.CC.Ecommerce.Core.props",
+      "PackagePath": "build\\Tarumt.CC.Ecommerce.Core.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Tarumt.CC.Ecommerce.Core.props",
+      "PackagePath": "buildMultiTargeting\\Tarumt.CC.Ecommerce.Core.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.Tarumt.CC.Ecommerce.Core.props",
+      "PackagePath": "buildTransitive\\Tarumt.CC.Ecommerce.Core.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

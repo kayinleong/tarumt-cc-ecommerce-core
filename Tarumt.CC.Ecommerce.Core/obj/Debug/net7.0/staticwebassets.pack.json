@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\css\\app-build.css",
+      "PackagePath": "staticwebassets\\css\\app-build.css"
+    },
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\files\\organiser\\1dc2ffe1-b7dc-413c-ba40-371744ee495c_Kayin_White_Small.png",
+      "PackagePath": "staticwebassets\\files\\organiser\\1dc2ffe1-b7dc-413c-ba40-371744ee495c_Kayin_White_Small.png"
+    },
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\files\\organiser\\7088b78a-0031-425f-9340-d7dc1cc16578_sample.mp3",
+      "PackagePath": "staticwebassets\\files\\organiser\\7088b78a-0031-425f-9340-d7dc1cc16578_sample.mp3"
+    },
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\files\\organiser\\c6a46c09-b92a-4c17-942d-38df5b7316f1_Successful Algorithmic Trading.pdf",
+      "PackagePath": "staticwebassets\\files\\organiser\\c6a46c09-b92a-4c17-942d-38df5b7316f1_Successful Algorithmic Trading.pdf"
+    },
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\files\\organiser\\d6f0ecb5-d150-45b0-9c54-9a4cb700cd3a_Kayin_White_Small.png",
+      "PackagePath": "staticwebassets\\files\\organiser\\d6f0ecb5-d150-45b0-9c54-9a4cb700cd3a_Kayin_White_Small.png"
+    },
+    {
+      "Id": "D:\\Programming\\Personal Projects\\Ky.Web.CMS\\Ky.Web.CMS.Core\\wwwroot\\files\\organiser\\d81b7621-6b90-4ae4-b4be-a62e08e25d74_Kayin_White_Small.png",
+      "PackagePath": "staticwebassets\\files\\organiser\\d81b7621-6b90-4ae4-b4be-a62e08e25d74_Kayin_White_Small.png"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Ky.Web.CMS.Core.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Ky.Web.CMS.Core.props",
+      "PackagePath": "build\\Ky.Web.CMS.Core.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Ky.Web.CMS.Core.props",
+      "PackagePath": "buildMultiTargeting\\Ky.Web.CMS.Core.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Ky.Web.CMS.Core.props",
+      "PackagePath": "buildTransitive\\Ky.Web.CMS.Core.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

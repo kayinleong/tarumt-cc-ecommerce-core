@@ -502,11 +502,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 
-### DotnetCore ###
-# .NET Core build folders
-bin/
-obj/
-
 # Common node modules locations
 /node_modules
 
