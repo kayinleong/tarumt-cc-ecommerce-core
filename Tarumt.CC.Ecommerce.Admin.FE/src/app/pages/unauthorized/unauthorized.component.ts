@@ -10,6 +10,6 @@ export class UnauthorizedComponent implements OnInit {
   constructor(private title: Title) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Unauthorized - Ky.Web.CMS.Admin Dashboard');
+    this.title.setTitle('Unauthorized - Tarumt.CC.Ecommerce Dashboard');
   }
 }

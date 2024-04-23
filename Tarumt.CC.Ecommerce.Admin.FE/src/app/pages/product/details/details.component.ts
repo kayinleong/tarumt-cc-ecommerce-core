@@ -21,7 +21,6 @@ export class DetailsComponent {
   id: string | undefined;
   errors: string[] = [];
   file: File | undefined;
-  categories_id: string[] | undefined;
   productCategories: PaginatedResponse<ProductCategoryResponse[]> | undefined;
   product: ProductResponse | undefined;
   baseUrl = environment.baseUrl;
@@ -49,9 +48,17 @@ export class DetailsComponent {
           .getById(this.id!, is_deleted)
           .subscribe((product) => {
             this.product = product;
-            this.categories_id = product.categories.map(m => {
-              return m.id;
-            })
+
+            let tempCategory = this.product.categories_id;
+            this.product.categories_id = [];
+            tempCategory.forEach((category) => {
+              this.productCategoryService.getByName(category).subscribe({
+                next: (productCategory) => {
+                  this.product!.categories_id.push(productCategory.id);
+                },
+              });
+            });
+
             this.product.start_at = this.dateService.convertToHtmlDateFormat(
               new Date(product.start_at).toLocaleDateString('en-US')
             );
@@ -75,7 +82,10 @@ export class DetailsComponent {
     if (this.product!.name === undefined || this.product!.name === '')
       this.errors.push('Name is required.');
 
-    if (this.product!.short_name === undefined || this.product!.short_name === '')
+    if (
+      this.product!.short_name === undefined ||
+      this.product!.short_name === ''
+    )
       this.errors.push('Short name is required.');
 
     if (this.product!.count === undefined || this.product!.count === 0)
@@ -97,15 +107,18 @@ export class DetailsComponent {
       this.errors.push('Description is required.');
 
     if (
-      this.categories_id === undefined ||
-      this.categories_id.length <= 0
+      this.product!.categories_id === undefined ||
+      this.product!.categories_id.length <= 0
     )
       this.errors.push('Categories is required.');
 
     if (this.product!.start_at === undefined || this.product!.start_at === '')
       this.errors.push('Start at is required.');
 
-    if (this.product!.expired_at === undefined || this.product!.expired_at === '')
+    if (
+      this.product!.expired_at === undefined ||
+      this.product!.expired_at === ''
+    )
       this.errors.push('Expired at is required.');
 
     if (this.errors.length > 0) return;
@@ -120,17 +133,25 @@ export class DetailsComponent {
 
     if (this.file !== undefined) {
       this.userFileService.upload(this.file!).subscribe((file) => {
-        this.productService.updateById(this.id!, {
-          ...this.product!,
-          categories_id: this.categories_id!,
-          image_url: file.path,
-        }).subscribe();
+        this.productService
+          .updateById(this.id!, {
+            ...this.product!,
+            categories_id: this.product!.categories_id!,
+            image_url: file.path,
+          })
+          .subscribe({
+            next: () => this.router.navigate(['/dashboard/product']),
+          });
       });
     } else {
-      this.productService.updateById(this.id!, {
-        ...this.product!,
-        categories_id: this.categories_id!,
-      }).subscribe();
+      this.productService
+        .updateById(this.id!, {
+          ...this.product!,
+          categories_id: this.product!.categories_id!,
+        })
+        .subscribe({
+          next: () => this.router.navigate(['/dashboard/product']),
+        });
     }
   }
 

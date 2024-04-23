@@ -1,0 +1,107 @@
+<div *ngIf="products === undefined || categories === undefined" class="flex justify-center w-full mt-20">
+  <component-loader />
+</div>
+
+<div *ngIf="products !== undefined && categories !== undefined" class="flex flex-col w-full lg:flex-row">
+  <div class="self-center lg:self-start w-[300px] lg:w-[20%] mb-10">
+    <div class="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h1 class="text-xl font-bold">
+        Product Search
+      </h1>
+
+      <form>
+        <h2 class="mb-1 font-semibold text-gray-600">
+          By Product Name
+        </h2>
+        <div>
+          <input [(ngModel)]="keyword" type="text" name="keyword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        </div>
+
+        <h2 class="mt-5 mb-1 font-semibold text-gray-600">
+          By Categories
+        </h2>
+        <div *ngFor="let category of categories" class="flex items-center mb-2">
+          <input (change)="onChangeCategory($event)" [name]="category.name" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">
+            {{ category.name }}
+          </label>
+        </div>
+
+        <div class="flex justify-between">
+          <span class="hidden lg:block"></span>
+          <button (click)="onClickSearch()" type="button" class="w-full lg:w-[100px] mt-5 text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="flex flex-row flex-wrap justify-center w-full lg:w-[80%] gap-5">
+    <a [routerLink]="'/product/' + product.id" *ngFor="let product of products.responses" class="hover:shadow-2xl w-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <img class="rounded-t-lg h-[300px] w-[300px]" [src]="fileUrl + product.image_url" [alt]="product.name + ' Image'" />
+      <div class="p-5">
+        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {{ product.name }}, {{ product.short_name }}
+        </h5>
+
+        <h6 class="text-lg font-semibold tracking-tight text-gray-500 dark:text-white">
+          <span *ngIf="product.discount_rate > 0">
+            <span class="text-orange-600">RM {{ (product.price - (product.price * product.discount_rate / 100)).toFixed(2) }}</span>
+            <span class="ml-1 text-sm line-through">RM {{ product.price.toFixed(2) }}</span>
+          </span>
+          <span *ngIf="product.discount_rate <= 0">
+            RM {{ product.price.toFixed(2) }}
+          </span>
+        </h6>
+
+        <span class="text-sm font-semibold text-gray-400">
+          {{ product.count }} in stock
+        </span>
+
+        <div class="max-h-[100px] truncate mt-4 mb-3 font-normal text-gray-700 dark:text-gray-400">
+          {{ product.description }}
+        </div>
+
+        <div class="flex flex-row flex-wrap">
+          <span *ngIf="product.discount_rate > 0" class="bg-red-100 mt-2 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+            Discount Item
+          </span>
+          <span *ngFor="let category of product.categories_id" class="bg-indigo-100 mt-2 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400">
+            {{ category }}
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <nav class="flex flex-col items-center w-full mt-20 mb-5">
+      <span class="w-full mb-3 text-sm text-center text-gray-700 dark:text-gray-400">
+        Showing <span class="font-semibold text-gray-900 dark:text-white">{{ pageNumber }}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{ products.total_pages }}</span> Pages
+      </span>
+      <ul class="flex items-center h-10 -space-x-px text-base">
+        <li>
+          <button [ngClass]="{
+            'cursor-not-allowed': !products.has_previous,
+            'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white': products.has_previous
+          }" (click)="onPreviousPage()" class="flex items-center justify-center h-10 px-4 leading-tight text-gray-500 bg-white border border-gray-300 ms-0 border-e-0 rounded-s-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ">
+            <span class="sr-only">Previous</span>
+            <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button [ngClass]="{
+            'cursor-not-allowed': !products.has_next,
+            'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white': products.has_next
+          }" (click)="onNextPage()" class="flex items-center justify-center h-10 px-4 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
+            <span class="sr-only">Next</span>
+            <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

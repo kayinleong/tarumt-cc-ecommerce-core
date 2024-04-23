@@ -1,0 +1,79 @@
+<div *ngIf="product === undefined" class="flex justify-center w-full mt-20">
+  <component-loader />
+</div>
+
+<div *ngIf="product !== undefined" class="flex flex-col w-full gap-5 p-6 bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:bg-gray-800 dark:border-gray-700">
+  <div class="w-full md:w-[40%]">
+    <img [src]="fileUrl + product.image_url" alt="product image" class="w-full h-auto rounded-lg shadow-lg" />
+  </div>
+  <div class="w-full md:w-[60%]">
+    <h1 class="text-2xl font-bold ">
+      {{ product.name }}, {{ product.short_name }}
+    </h1>
+
+    <div class="flex flex-row flex-wrap">
+      <span *ngIf="product.discount_rate > 0" class="bg-red-100 mt-2 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+        Discount Item
+      </span>
+      <span *ngFor="let category of product.categories_id" class="bg-indigo-100 mt-2 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400">
+        {{ category }}
+      </span>
+    </div>
+
+    <div class="p-5 mt-6 text-3xl font-semibold bg-gray-100 rounded-md">
+      <span *ngIf="product.discount_rate > 0">
+        <span class="mr-2 text-base line-through">RM {{ product.price }}</span>
+        <div class="inline-flex items-center ">
+          <span class="mr-2 text-orange-600">RM {{ product.price - (product.price * product.discount_rate / 100) }}</span>
+          <span class="px-4 py-1 text-lg text-white bg-orange-600 rounded-md">{{ product.discount_rate }}% off</span>
+        </div>
+      </span>
+      <span *ngIf="product.discount_rate <= 0">
+        RM {{ product.price }}
+      </span>
+    </div>
+
+    <form (submit)="onSubmit()">
+      <div class="mt-10">
+        <div class="flex flex-col md:flex-row">
+          <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white w-[150px]">Choose quantity:</label>
+          <div>
+            <div class="relative flex items-center max-w-[8rem]">
+              <button (click)="onDecrementCount()" type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="p-3 bg-gray-100 border border-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 rounded-s-lg h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                </svg>
+              </button>
+              <input [(ngModel)]="cartItem.count" name="count" type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="999" required />
+              <button (click)="onIncrementCount()" type="button" id="increment-button" data-input-counter-increment="quantity-input" class="p-3 bg-gray-100 border border-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 rounded-e-lg h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                </svg>
+              </button>
+            </div>
+            <p id="helper-text-explanation" class="mt-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
+              Available stock: {{ product.count }}
+            </p>
+            <p *ngIf="cartItem.count > product.count" id="helper-text-explanation" class="text-sm font-semibold text-red-500 dark:text-gray-400">
+              Insufficient stock! Please reduce the quantity.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col mt-12 md:flex-row">
+        <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white w-[150px]">
+          Actions:
+        </span>
+        <div>
+          <button type="submit" class="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            Add to Cart
+          </button>
+          <button class="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            Pay Now
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

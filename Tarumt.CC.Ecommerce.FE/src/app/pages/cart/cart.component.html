@@ -1,0 +1,97 @@
+<div *ngIf="cart === undefined || cartItems === undefined" class="flex justify-center w-full mt-20">
+  <component-loader />
+</div>
+
+<div *ngIf="cart !== undefined && cartItems !== undefined">
+  <div class="flex flex-col p-4 mb-5 bg-white border border-gray-200 rounded-lg shadow lg:flex-row dark:bg-gray-800 dark:border-gray-700">
+    <div class="min-w-[200px]">
+    </div>
+    <div class="flex flex-col justify-between w-full h-full font-semibold lg:mt-0 lg:ml-4">
+      <div class="flex flex-row items-center w-[100%] lg:w-[70%]">
+        <h1 class="w-[20%] text-2xl font-bold">
+          Cart Info
+        </h1>
+        <span class="w-[80%] text-end">
+          Price (RM)
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let cartItem of cartItems" class="flex flex-col w-full h-full p-4 mb-5 bg-white border border-gray-200 rounded-lg shadow lg:flex-row dark:bg-gray-800 dark:border-gray-700">
+    <img [src]="fileUrl + cartItem.product.image_url" width="200px" class="self-center rounded-md" />
+
+    <div class="flex flex-col justify-between w-full h-full font-semibold lg:mt-0 lg:ml-4">
+      <h2 class="mt-3 text-xl font-bold">
+        {{ cartItem.product.name }}, {{ cartItem.product.short_name }}
+      </h2>
+
+      <div class="flex flex-col gap-1 mt-5">
+        <div class="flex flex-row w-[100%] lg:w-[70%]">
+          <span class="w-[20%]">Original Price</span>
+          <span class="w-[80%] text-end font-normal">
+            {{ cartItem.product.price.toFixed(2) }}
+          </span>
+        </div>
+        <div class="flex flex-row w-[100%] lg:w-[70%]">
+          <span class="w-[20%]">Final Price</span>
+          <span class="w-[80%] text-end self-end font-normal">
+            <span *ngIf="cartItem.product.discount_rate > 0">
+              <span class="text-sm line-through">{{ cartItem.product.price.toFixed(2) }}</span>
+              <span class="ml-1 text-orange-600">{{ (cartItem.product.price - (cartItem.product.price * cartItem.product.discount_rate / 100)).toFixed(2) }}</span>
+            </span>
+            <span *ngIf="cartItem.product.discount_rate <= 0">
+              {{ cartItem.product.price.toFixed(2) }}
+            </span>
+          </span>
+        </div>
+        <div class="flex flex-row w-[100%] lg:w-[70%] border-b-2 pb-2">
+          <span class="w-[20%]">Quantity</span>
+          <span class="w-[80%] text-end font-normal">
+            {{ cartItem.user_cart_items.count }}
+          </span>
+        </div>
+        <div class="flex flex-row w-[100%] lg:w-[70%]">
+          <span class="w-[20%]">Total Price</span>
+          <span class="w-[80%] text-end font-normal">
+            {{ ((cartItem.product.price - (cartItem.product.price * cartItem.product.discount_rate / 100)) * cartItem.user_cart_items.count).toFixed(2) }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4 mb-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex flex-col w-full lg:flex-row">
+      <div class="min-w-[200px]"></div>
+      <div class="flex flex-col justify-between w-full h-full font-semibold lg:mt-0 lg:ml-4">
+        <div class="flex flex-row w-[100%] lg:w-[70%]">
+          <span class="w-[20%]">Tax</span>
+          <span class="w-[80%] text-end font-normal">
+            8%
+          </span>
+        </div>
+        <div class="flex flex-row w-[100%] lg:w-[70%]">
+          <span class="w-[20%]">Tax Price</span>
+          <span class="w-[80%] text-end font-normal">
+            {{ (cartTotalPrice * 0.08).toFixed(2) }}
+          </span>
+        </div>
+        <div class="flex flex-row w-[100%] lg:w-[70%] border-t-2 border-b-2">
+          <span class="w-[20%]">Total Payable</span>
+          <span class="w-[80%] text-end font-normal">
+            {{ (cartTotalPrice + (cartTotalPrice * 0.08)).toFixed(2) }}
+          </span>
+        </div>
+        <div class="flex flex-row mt-10 w-[100%] lg:w-[70%]">
+          <span class="w-[20%]"></span>
+          <span class="w-[80%] text-end font-normal">
+            <button *ngIf="cartItems.length > 0" (click)="onClickCheckout()" type="button" class="w-[100px] text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+              Checkout
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

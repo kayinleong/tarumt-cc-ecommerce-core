@@ -1,0 +1,12 @@
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\bin\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.deps.json
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\bin\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.dll
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\bin\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.pdb
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.AssemblyInfoInputs.cache
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.AssemblyInfo.cs
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.csproj.CoreCompileInputs.cache
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.sourcelink.json
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.dll
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\refint\Tarumt.CC.Ecommerce.SharedLibrary.dll
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\Tarumt.CC.Ecommerce.SharedLibrary.pdb
+E:\Programming\Projects\Tarumt.CC.Ecommerce\Tarumt.CC.Ecommerce.SharedLibrary\obj\Release\net8.0\ref\Tarumt.CC.Ecommerce.SharedLibrary.dll

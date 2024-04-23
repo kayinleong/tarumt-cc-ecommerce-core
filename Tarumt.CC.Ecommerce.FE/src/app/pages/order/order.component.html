@@ -1,0 +1,70 @@
+<div *ngIf="userOrderView === undefined" class="flex justify-center w-full mt-20">
+  <component-loader />
+</div>
+
+<div *ngIf="userOrderView !== undefined">
+  <h1 class="text-2xl font-bold">
+    Orders History
+  </h1>
+
+  <div class="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            When?
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Total Price (RM)
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of userOrderView.responses" class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{ order.user_order.created_at | date: 'dd/MM/yyyy' }}
+          </th>
+          <td class="px-6 py-4">
+            {{ (order.total_price * 1.08).toFixed(2) }}
+          </td>
+          <td class="px-6 py-4">
+            <a [routerLink]="'/order/' + order.user_order.id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View order details</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="flex flex-col items-center w-full mt-20 mb-5">
+      <span class="w-full mb-3 text-sm text-center text-gray-700 dark:text-gray-400">
+        Showing <span class="font-semibold text-gray-900 dark:text-white">{{ pageNumber }}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{ userOrderView.total_pages }}</span> Pages
+      </span>
+      <ul class="flex items-center h-10 -space-x-px text-base">
+        <li>
+          <button [ngClass]="{
+            'cursor-not-allowed': !userOrderView.has_previous,
+            'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white': userOrderView.has_previous
+          }" (click)="onPreviousPage()" class="flex items-center justify-center h-10 px-4 leading-tight text-gray-500 bg-white border border-gray-300 ms-0 border-e-0 rounded-s-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 ">
+            <span class="sr-only">Previous</span>
+            <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button [ngClass]="{
+            'cursor-not-allowed': !userOrderView.has_next,
+            'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white': userOrderView.has_next
+          }" (click)="onNextPage()" class="flex items-center justify-center h-10 px-4 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
+            <span class="sr-only">Next</span>
+            <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -10,7 +10,7 @@ import { environment } from '../environments/env';
         authority: environment.api.oidcUrl,
         redirectUrl: window.location.origin,
         postLogoutRedirectUri: window.location.origin,
-        clientId: 'tarumt_web_ecommerce_frontend',
+        clientId: 'tarumt_web_ecommerce_admin_fe_frontend',
         scope: 'openid profile email address phone roles offline_access',
         responseType: 'code',
         silentRenew: true,

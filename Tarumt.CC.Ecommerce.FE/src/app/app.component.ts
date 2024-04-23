@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { initFlowbite } from 'flowbite';
 
 @Component({
@@ -7,7 +8,11 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+  constructor(private oidc: OidcSecurityService) {}
+
   ngOnInit(): void {
     initFlowbite();
+
+    this.oidc.checkAuth().subscribe((isAuthenticated) => {})
   }
 }

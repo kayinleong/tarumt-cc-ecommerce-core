@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Tarumt.CC.Ecommerce.Core.props" />
+</Project>

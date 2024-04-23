@@ -5,9 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarumt.CC.Ecommerce.Core", "Tarumt.CC.Ecommerce.Core\Tarumt.CC.Ecommerce.Core.csproj", "{B303A431-2724-43C5-BF45-83AC54112376}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarumt.CC.Ecommerce.Gateway", "Tarumt.CC.Ecommerce.Gateway\Tarumt.CC.Ecommerce.Gateway.csproj", "{1557E7F4-51A6-44F1-86E5-C851E4CFDC1B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarumt.CC.Ecommerce.SharedLibarary", "Tarumt.CC.Ecommerce.SharedLibarary\Tarumt.CC.Ecommerce.SharedLibarary.csproj", "{732659FB-04C2-46D8-837B-AFAE9AF4A08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarumt.CC.Ecommerce.SharedLibrary", "Tarumt.CC.Ecommerce.SharedLibrary\Tarumt.CC.Ecommerce.SharedLibrary.csproj", "{27C44FDC-E85D-43C7-B13F-3BB91A0AE303}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +17,10 @@ Global
 		{B303A431-2724-43C5-BF45-83AC54112376}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B303A431-2724-43C5-BF45-83AC54112376}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B303A431-2724-43C5-BF45-83AC54112376}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1557E7F4-51A6-44F1-86E5-C851E4CFDC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1557E7F4-51A6-44F1-86E5-C851E4CFDC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1557E7F4-51A6-44F1-86E5-C851E4CFDC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1557E7F4-51A6-44F1-86E5-C851E4CFDC1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{732659FB-04C2-46D8-837B-AFAE9AF4A08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{732659FB-04C2-46D8-837B-AFAE9AF4A08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{732659FB-04C2-46D8-837B-AFAE9AF4A08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{732659FB-04C2-46D8-837B-AFAE9AF4A08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C44FDC-E85D-43C7-B13F-3BB91A0AE303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C44FDC-E85D-43C7-B13F-3BB91A0AE303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C44FDC-E85D-43C7-B13F-3BB91A0AE303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C44FDC-E85D-43C7-B13F-3BB91A0AE303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
