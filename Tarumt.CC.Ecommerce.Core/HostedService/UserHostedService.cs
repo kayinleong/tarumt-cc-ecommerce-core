@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Tarumt.CC.Ecommerce.Constants;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Constants;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
 
-namespace Tarumt.CC.Ecommerce.HostedService
+namespace Tarumt.CC.Ecommerce.Core.HostedService
 {
     public class UserHostedService : IHostedService
     {

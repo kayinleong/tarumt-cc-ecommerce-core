@@ -1,4 +1,4 @@
-﻿namespace Tarumt.CC.Ecommerce.Extensions
+﻿namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class CorsExtensions
     {
@@ -8,14 +8,14 @@
             {
                 options.AddPolicy("PRODUCTION", policyOptions =>
                 {
-                    policyOptions.WithOrigins()
+                    policyOptions.WithOrigins("http://localhost:8011", "http://localhost:8012")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
 
                 options.AddPolicy("DEVELOPMENT", policyOptions =>
                 {
-                    policyOptions.WithOrigins("http://localhost:4200")
+                    policyOptions.WithOrigins("http://localhost:4200", "http://localhost:4100")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });

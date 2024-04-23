@@ -1,18 +1,18 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Models
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Models
 {
     public class UserPortalServerSetting : ModelBase
     {
         [Required]
-        public required bool EnableLoginPage { get; set; } = true;
+        public bool EnableLoginPage { get; set; } = true;
 
         [Required]
-        public required bool EnableRegisterPage { get; set; } = true;
+        public bool EnableRegisterPage { get; set; } = true;
 
         [Required]
-        public required bool EnablePasswordForget { get; set; } = true;
+        public bool EnablePasswordForget { get; set; } = true;
 
         public static implicit operator UserPortalServerSetting(UserPortalServerSettingAdminRequest userPortalServerSettingAdminRequest)
         {

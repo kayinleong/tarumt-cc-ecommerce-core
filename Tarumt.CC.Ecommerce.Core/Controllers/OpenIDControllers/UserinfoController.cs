@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
-using Tarumt.CC.Ecommerce.Services;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Tarumt.CC.Ecommerce.Controllers.OpenIDControllers
+namespace Tarumt.CC.Ecommerce.Core.Controllers.OpenIDControllers
 {
     [Authorize(AuthenticationSchemes = OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)]
     [ApiController]
@@ -16,23 +15,11 @@ namespace Tarumt.CC.Ecommerce.Controllers.OpenIDControllers
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public class UserinfoController : ControllerBase
     {
-        private readonly UserService _userService;
-
-        public UserinfoController(UserService userService)
-        {
-            _userService = userService;
-        }
-
         [HttpGet("/connect/userinfo")]
         [HttpPost("/connect/userinfo")]
         public async Task<IActionResult> Userinfo()
         {
-            System.Security.Claims.ClaimsPrincipal claimsPrincipal = (await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)).Principal
-                ?? throw new InvalidOperationException("Authentication failed");
-            string userId = claimsPrincipal.Claims.First(m => m.Type == Claims.Subject).Value
-                ?? throw new InvalidOperationException("Authentication failed");
-            Infrastructure.Models.User user = await _userService.GetByIdAsync(userId, false, false);
-
+            User user = (HttpContext.Items["User"] as User)!;
             Dictionary<string, object> claims = new Dictionary<string, object>(StringComparer.Ordinal)
             {
                 [Claims.Subject] = user.Id

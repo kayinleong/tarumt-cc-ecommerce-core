@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tarumt.CC.Ecommerce.SharedLibarary\Tarumt.CC.Ecommerce.SharedLibarary.csproj" />
+    <ProjectReference Include="..\Tarumt.CC.Ecommerce.SharedLibrary\Tarumt.CC.Ecommerce.SharedLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

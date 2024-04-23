@@ -1,11 +1,11 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Services;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
 
-namespace Tarumt.CC.Ecommerce.Controllers.ServerSettingControllers
+namespace Tarumt.CC.Ecommerce.Core.Controllers.ServerSettingControllers
 {
     [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [ApiController]
@@ -14,15 +14,8 @@ namespace Tarumt.CC.Ecommerce.Controllers.ServerSettingControllers
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public class ServerSettingAdminApiController : ControllerBase
+    public class ServerSettingAdminApiController(ServerSettingService _service) : ControllerBase
     {
-        private readonly ServerSettingService _service;
-
-        public ServerSettingAdminApiController(ServerSettingService service)
-        {
-            _service = service;
-        }
-
         [HttpGet("/api/admin/server_settings/")]
         public async Task<ServerSetting> Get()
         {
@@ -34,12 +27,7 @@ namespace Tarumt.CC.Ecommerce.Controllers.ServerSettingControllers
         public async Task<ActionResult> Update(ServerSettingAdminRequest serverSettingAdminRequest)
         {
             bool data = await _service.UpdateAsync(serverSettingAdminRequest);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
     }
 }

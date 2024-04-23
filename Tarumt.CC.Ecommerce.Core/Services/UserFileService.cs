@@ -1,7 +1,7 @@
-﻿using Tarumt.CC.Ecommerce.Infrastructure.Context;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
+﻿using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
 
-namespace Tarumt.CC.Ecommerce.Services
+namespace Tarumt.CC.Ecommerce.Core.Services
 {
     public class UserFileService
     {
@@ -9,14 +9,14 @@ namespace Tarumt.CC.Ecommerce.Services
         private readonly string _filePath;
         private readonly string _urlFilePath;
 
-        public UserFileService(IWebHostEnvironment env, CoreContext context)
+        public UserFileService(IWebHostEnvironment env, IConfiguration config, CoreContext context)
         {
             _context = context;
-
+            
             if (env.IsDevelopment())
             {
                 _urlFilePath = "/files/";
-                _filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/files/");
+                _filePath = Path.Combine(Directory.GetCurrentDirectory(), @config["File:Path"]!);
                 if (!Directory.Exists(_filePath))
                 {
                     Directory.CreateDirectory(_filePath);
@@ -25,7 +25,7 @@ namespace Tarumt.CC.Ecommerce.Services
             else
             {
                 _urlFilePath = "";
-                _filePath = Path.Combine(@"/var/www/static/");
+                _filePath = Path.Combine(@config["File:Path"]!);
                 if (!Directory.Exists(_filePath))
                 {
                     Directory.CreateDirectory(_filePath);
@@ -41,7 +41,7 @@ namespace Tarumt.CC.Ecommerce.Services
 
             await UploadAsync(file, finalFilename, folderName);
 
-            var userFile = new UserFile()
+            UserFile userFile = new UserFile()
             {
                 FileName = finalFilename,
                 Path = _urlFilePath + folderName

@@ -1,15 +1,15 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Models
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Models
 {
     public class UserServerSetting : ModelBase
     {
         [Required]
-        public required bool RequiredUserAddress { get; set; } = false;
+        public bool RequiredUserAddress { get; set; } = false;
 
         [Required]
-        public required bool RequiredStrongPasswordValidation { get; set; } = true;
+        public bool RequiredStrongPasswordValidation { get; set; } = true;
 
         public static implicit operator UserServerSetting(UserServerSettingAdminRequest userServerSettingAdminRequest)
         {

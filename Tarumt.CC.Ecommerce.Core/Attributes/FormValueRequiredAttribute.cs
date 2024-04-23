@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
-namespace Tarumt.CC.Ecommerce.Attributes
+namespace Tarumt.CC.Ecommerce.Core.Attributes
 {
     public class FormValueRequiredAttribute : ActionMethodSelectorAttribute
     {

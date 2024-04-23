@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using OpenIddict.Server.AspNetCore;
+using OpenIddict.Validation.AspNetCore;
 using System.Security.Claims;
-using Tarumt.CC.Ecommerce.Services;
+using Tarumt.CC.Ecommerce.Core.Services;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Tarumt.CC.Ecommerce.Middlewares
+namespace Tarumt.CC.Ecommerce.Core.Middlewares
 {
     public class UserMiddleware
     {
@@ -18,7 +18,7 @@ namespace Tarumt.CC.Ecommerce.Middlewares
 
         public async Task InvokeAsync(HttpContext httpContext, UserService userService)
         {
-            if (httpContext.Request.Path.Value.StartsWith("/api/token/"))
+            if (httpContext.Request.Path.Value!.StartsWith("/api/token/"))
             {
                 await _requestDelegate(httpContext);
                 return;
@@ -59,7 +59,7 @@ namespace Tarumt.CC.Ecommerce.Middlewares
                 }
                 else
                 {
-                    ClaimsPrincipal claimsPrincipal = (await httpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)).Principal;
+                    ClaimsPrincipal claimsPrincipal = (await httpContext.AuthenticateAsync(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)).Principal;
                     string userId = claimsPrincipal.Claims.FirstOrDefault(m => m.Type == Claims.Subject).Value;
 
                     Infrastructure.Models.User user = await userService.GetByIdAsync(userId, false, false);

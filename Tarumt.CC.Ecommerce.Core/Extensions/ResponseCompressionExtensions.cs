@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
 
-namespace Tarumt.CC.Ecommerce.Extensions
+namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class ResponseCompressionExtensions
     {

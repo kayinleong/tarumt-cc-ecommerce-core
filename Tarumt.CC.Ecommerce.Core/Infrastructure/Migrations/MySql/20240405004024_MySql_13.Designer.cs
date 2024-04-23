@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 
 #nullable disable
 
@@ -282,7 +282,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("ProductCarts");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.Product", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.Product", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -349,7 +349,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.ProductCategory", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCategory", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -384,7 +384,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.ServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ServerSetting", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -422,7 +422,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("ServerSettings");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.User", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -514,7 +514,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserFile", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserFile", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -553,7 +553,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("UserFiles");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserMfa", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserMfa", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -592,7 +592,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("UserMfas");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserPortalServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserPortalServerSetting", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -629,7 +629,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("UserPortalServerSettings");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserServerSetting", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -689,13 +689,13 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
 
             modelBuilder.Entity("ProductProductCategory", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.ProductCategory", null)
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCategory", null)
                         .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.Product", null)
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -704,7 +704,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
 
             modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCart", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.User", "User")
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -713,20 +713,20 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.Product", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.Product", b =>
                 {
                     b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCart", null)
                         .WithMany("Products")
                         .HasForeignKey("ProductCartId");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.ServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ServerSetting", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.UserPortalServerSetting", "UserPortalServerSettings")
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserPortalServerSetting", "UserPortalServerSettings")
                         .WithMany()
                         .HasForeignKey("UserPortalServerSettingsId");
 
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.UserServerSetting", "UserServerSettings")
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserServerSetting", "UserServerSettings")
                         .WithMany()
                         .HasForeignKey("UserServerSettingsId");
 
@@ -735,9 +735,9 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.Navigation("UserServerSettings");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.User", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.UserMfa", "UserMfa")
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserMfa", "UserMfa")
                         .WithMany()
                         .HasForeignKey("UserMfaId")
                         .OnDelete(DeleteBehavior.Cascade)

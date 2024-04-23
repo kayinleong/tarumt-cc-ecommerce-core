@@ -1,8 +1,8 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Models
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Models
 {
     [Index(nameof(FileName), IsUnique = true)]
     public class UserFile : ModelBase

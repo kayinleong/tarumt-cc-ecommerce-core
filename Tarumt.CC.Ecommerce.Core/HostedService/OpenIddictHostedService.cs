@@ -1,7 +1,7 @@
 ﻿using OpenIddict.Abstractions;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 
-namespace Tarumt.CC.Ecommerce.HostedService
+namespace Tarumt.CC.Ecommerce.Core.HostedService
 {
     public class OpenIddictHostedService : IHostedService
     {

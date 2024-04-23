@@ -1,12 +1,14 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Models
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Models
 {
     [Index(nameof(Name), IsUnique = true)]
     public class ProductCategory : ModelBase
     {
+        [Required]
         public required string Name { get; set; }
 
         public List<Product>? Products { get; set; }

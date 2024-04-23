@@ -1,7 +1,7 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.AspNetCore.Mvc;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Services;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
 namespace Tarumt.CC.Ecommerce.Controllers.BlogControllers
 {
@@ -9,26 +9,46 @@ namespace Tarumt.CC.Ecommerce.Controllers.BlogControllers
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public class ProductApiController : ControllerBase
+    public class ProductApiController(ProductService service) : ControllerBase
     {
-        private readonly ProductService _service;
-
-        public ProductApiController(ProductService service)
+        [HttpGet("/api/product/")]
+        public PaginatedResponse<IEnumerable<ProductResponse>> GetAll(int pageNumber, int pageSize, string? keyword)
         {
-            _service = service;
+            PagedList<ProductResponse> data = service.GetAllByIsNotExpiredResponse(pageNumber, pageSize, keyword, false);
+            IOrderedEnumerable<ProductResponse> products = data.OrderBy(m => m.CreatedAt);
+
+            return new PaginatedResponse<IEnumerable<ProductResponse>>
+            {
+                Responses = products,
+                CurrentPage = pageNumber,
+                TotalPages = data.TotalPages,
+                TotalCount = data.TotalCount,
+                HasNext = data.HasNext,
+                HasPrevious = data.HasPrevious,
+            };
         }
 
-        [HttpGet("/api/product/")]
-        public PagedList<ProductResponse> GetAll(int pageNumber, int pageSize, string? keyword)
+        [HttpGet("/api/product/category/")]
+        public PaginatedResponse<IEnumerable<ProductResponse>> GetAllByCategory(int pageNumber, int pageSize, string? keyword, string category)
         {
-            PagedList<ProductResponse> data = _service.GetAllResponse(pageNumber, pageSize, keyword, false);
-            return data;
+            PagedList<ProductResponse> data = service.GetAllByIsNotAndCategoryExpired(pageNumber, pageSize, keyword, category.Split(","), false);
+            IOrderedEnumerable<ProductResponse> products = data.OrderBy(m => m.CreatedAt);
+
+            return new PaginatedResponse<IEnumerable<ProductResponse>>
+            {
+                Responses = products,
+                CurrentPage = pageNumber,
+                TotalPages = data.TotalPages,
+                TotalCount = data.TotalCount,
+                HasNext = data.HasNext,
+                HasPrevious = data.HasPrevious,
+            };
         }
 
         [HttpGet("/api/product/{id}/")]
         public async Task<ProductResponse> GetByIdAsync(string id)
         {
-            Product data = await _service.GetByIdAsync(id, false);
+            Product data = await service.GetByIdIsNotExpiredAsync(id, false);
             return (ProductResponse)data;
         }
     }

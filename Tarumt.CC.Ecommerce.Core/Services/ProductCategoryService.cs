@@ -1,30 +1,21 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.EntityFrameworkCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Services
+namespace Tarumt.CC.Ecommerce.Core.Services
 {
-    public class ProductCategoryService
+    public class ProductCategoryService(ILogger<ProductCategoryService> logger, CoreContext context)
     {
-        private readonly ILogger<ProductCategoryService> _logger;
-        private readonly CoreContext _context;
-
-        public ProductCategoryService(ILogger<ProductCategoryService> logger, CoreContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
-
         public PagedList<ProductCategory> GetAll(int pageNumber, int pageSize, string keyword, bool isDeleted)
         {
-            _logger.LogInformation($"[PRODUCTCATEGORY GET ALL] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
+            logger.LogInformation($"[PRODUCTCATEGORY GET ALL] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
 
             if (string.IsNullOrEmpty(keyword))
             {
                 return PagedList<ProductCategory>.ToPagedList(
-                    _context.Set<ProductCategory>()
+                    context.Set<ProductCategory>()
                         .Where(m => m.IsDeleted == isDeleted)
                         .OrderBy(m => m.CreatedAt),
                     pageNumber, pageSize);
@@ -32,7 +23,7 @@ namespace Tarumt.CC.Ecommerce.Services
             else
             {
                 return PagedList<ProductCategory>.ToPagedList(
-                    _context.Set<ProductCategory>()
+                    context.Set<ProductCategory>()
                         .Where(m => m.IsDeleted == isDeleted)
                         .Where(m => m.Name.Contains(keyword))
                         .OrderBy(m => m.CreatedAt),
@@ -42,12 +33,12 @@ namespace Tarumt.CC.Ecommerce.Services
 
         public PagedList<ProductCategoryResponse> GetAllResponse(int pageNumber, int pageSize, string keyword, bool isDeleted)
         {
-            _logger.LogInformation($"[PRODUCTCATEGORY GET ALL] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
+            logger.LogInformation($"[PRODUCTCATEGORY GET ALL] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
 
             if (string.IsNullOrEmpty(keyword))
             {
                 return PagedList<ProductCategoryResponse>.ToPagedList(
-                    _context.Set<ProductCategory>()
+                    context.Set<ProductCategory>()
                         .Where(m => m.IsDeleted == isDeleted)
                         .OrderBy(m => m.CreatedAt)
                         .Select(m => (ProductCategoryResponse)m),
@@ -56,7 +47,7 @@ namespace Tarumt.CC.Ecommerce.Services
             else
             {
                 return PagedList<ProductCategoryResponse>.ToPagedList(
-                    _context.Set<ProductCategory>()
+                    context.Set<ProductCategory>()
                         .Where(m => m.IsDeleted == isDeleted)
                         .Where(m => m.Name.Contains(keyword))
                         .OrderBy(m => m.CreatedAt)
@@ -67,41 +58,50 @@ namespace Tarumt.CC.Ecommerce.Services
 
         public async Task<ProductCategory> GetByIdAsync(string id, bool isDeleted)
         {
-            _logger.LogInformation($"[PRODUCTCATEGORY GET BY ID] ID: {id}");
+            logger.LogInformation($"[PRODUCTCATEGORY GET BY ID] ID: {id}");
 
-            return await _context.ProductCategories
+            return await context.ProductCategories
                 .Where(m => m.IsDeleted == isDeleted)
                 .SingleAsync(m => m.Id == id) ?? throw new InvalidOperationException("Product Category not found");
         }
 
+        public async Task<ProductCategory> GetByNameAsync(string name, bool isDeleted)
+        {
+            logger.LogInformation($"[PRODUCTCATEGORY GET BY Name] ID: {name}");
+
+            return await context.ProductCategories
+                .Where(m => m.IsDeleted == isDeleted)
+                .SingleAsync(m => m.Name == name) ?? throw new InvalidOperationException("Product Category not found");
+        }
+
         public async Task<bool> CreateAsync(ProductCategoryAdminRequest productCategoryAdminRequest)
         {
-            _logger.LogInformation($"[PRODUCTCATEGORY CREATE]");
+            logger.LogInformation($"[PRODUCTCATEGORY CREATE]");
 
-            await _context.ProductCategories.AddAsync((ProductCategory)productCategoryAdminRequest);
-            return await _context.SaveChangesAsync() != 0;
+            await context.ProductCategories.AddAsync((ProductCategory)productCategoryAdminRequest);
+            return await context.SaveChangesAsync() != 0;
         }
 
         public async Task<bool> UpdateAsync(ProductCategoryAdminRequest productCategoryAdminRequest, string id, bool isDeleted)
         {
-            _logger.LogInformation($"[PRODUCTCATEGORY UPDATE] ID: {id}");
+            logger.LogInformation($"[PRODUCTCATEGORY UPDATE] ID: {id}");
 
             ProductCategory currentProductCategory = await GetByIdAsync(id, isDeleted);
             currentProductCategory.Name = productCategoryAdminRequest.Name;
 
-            _context.ProductCategories.Update(currentProductCategory);
-            return await _context.SaveChangesAsync() != 0;
+            context.ProductCategories.Update(currentProductCategory);
+            return await context.SaveChangesAsync() != 0;
         }
 
         public async Task<bool> DeleteAsync(string id)
         {
-            _logger.LogInformation($"[PRODUCTCATEGORY DELETE] ID: {id}");
+            logger.LogInformation($"[PRODUCTCATEGORY DELETE] ID: {id}");
 
             ProductCategory currentProductCategory = await GetByIdAsync(id, false);
             currentProductCategory.IsDeleted = true;
 
-            _context.ProductCategories.Update(currentProductCategory);
-            return await _context.SaveChangesAsync() != 0;
+            context.ProductCategories.Update(currentProductCategory);
+            return await context.SaveChangesAsync() != 0;
         }
     }
 }

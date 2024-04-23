@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Tarumt.CC.Ecommerce.Policies;
+namespace Tarumt.CC.Ecommerce.Core.Policies;
 
 public class SnakeCaseNamingPolicy : JsonNamingPolicy
 {

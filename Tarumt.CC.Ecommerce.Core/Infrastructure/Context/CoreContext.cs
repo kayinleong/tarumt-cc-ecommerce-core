@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Context;
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 
 public class CoreContext : DbContext
 {
@@ -22,7 +21,13 @@ public class CoreContext : DbContext
 
     public DbSet<ProductCategory> ProductCategories { get; set; }
 
-    public DbSet<ProductCart> ProductCarts { get; set; }
+    public DbSet<UserCard> UserCards {  get; set; }
+
+    public DbSet<UserCart> UserCarts { get; set; }
+
+    public DbSet<UserCartItem> UserCartItems { get; set; }
+
+    public DbSet<UserOrder> UserOrders { get; set; }
 
     public CoreContext(DbContextOptions options) : base(options)
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Tarumt.CC.Ecommerce.Extensions
+namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class OpenIddictExtensions
     {

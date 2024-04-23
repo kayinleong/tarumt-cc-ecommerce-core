@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Newtonsoft.Json.Serialization;
-using Tarumt.CC.Ecommerce.Policies;
+using Tarumt.CC.Ecommerce.Core.Policies;
 
-namespace Tarumt.CC.Ecommerce.Extensions
+namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class MvcExtensions
     {

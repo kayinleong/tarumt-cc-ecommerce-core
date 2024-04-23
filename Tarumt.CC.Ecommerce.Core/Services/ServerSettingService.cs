@@ -1,26 +1,17 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Microsoft.EntityFrameworkCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
 
-namespace Tarumt.CC.Ecommerce.Services
+namespace Tarumt.CC.Ecommerce.Core.Services
 {
-    public class ServerSettingService
+    public class ServerSettingService(ILogger<ServerSettingService> logger, CoreContext context)
     {
-        private readonly ILogger<ServerSettingService> _logger;
-        private readonly CoreContext _context;
-
-        public ServerSettingService(ILogger<ServerSettingService> logger, CoreContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
-
         public async Task<ServerSetting> GetAsync()
         {
-            _logger.LogInformation("[SERVER SETTING GET]");
+            logger.LogInformation("[SERVER SETTING GET]");
 
-            return await _context.ServerSettings
+            return await context.ServerSettings
                 .Include(m => m.UserServerSettings)
                 .Include(m => m.UserPortalServerSettings)
                 .FirstAsync() ?? throw new InvalidOperationException("Server Setting not found");
@@ -33,8 +24,8 @@ namespace Tarumt.CC.Ecommerce.Services
             serverSetting.UserServerSettings = serverSettingAdminRequest.UserServerSettings;
             serverSetting.UserPortalServerSettings = serverSettingAdminRequest.UserPortalServerSettings;
 
-            _context.ServerSettings.Update(serverSetting);
-            return await _context.SaveChangesAsync() != 0;
+            context.ServerSettings.Update(serverSetting);
+            return await context.SaveChangesAsync() != 0;
         }
     }
 }

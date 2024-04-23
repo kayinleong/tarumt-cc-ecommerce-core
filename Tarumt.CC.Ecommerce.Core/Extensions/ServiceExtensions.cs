@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
 using Tarumt.CC.Ecommerce.Core.Services;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
 
-namespace Tarumt.CC.Ecommerce.Extensions
+namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class ServiceExtensions
     {
@@ -15,7 +14,10 @@ namespace Tarumt.CC.Ecommerce.Extensions
             services.AddScoped<UserFileService>();
             services.AddScoped<ProductService>();
             services.AddScoped<ProductCategoryService>();
-            services.AddScoped<ProductCartService>();
+            services.AddScoped<UserOrderService>();
+            services.AddScoped<UserCardService>();
+            services.AddScoped<UserCartService>();
+            services.AddScoped<UserCartItemService>();
             services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddSingleton<ProblemDetailsFactory, CustomProblemDetailsFactory>();
         }

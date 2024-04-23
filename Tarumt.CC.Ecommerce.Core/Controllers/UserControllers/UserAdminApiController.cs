@@ -1,12 +1,12 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Services;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Controllers.UserControllers
+namespace Tarumt.CC.Ecommerce.Core.Controllers.UserControllers
 {
     [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [ApiController]
@@ -15,15 +15,8 @@ namespace Tarumt.CC.Ecommerce.Controllers.UserControllers
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public class UserAdminApiController : ControllerBase
+    public class UserAdminApiController(UserService _service) : ControllerBase
     {
-        private readonly UserService _service;
-
-        public UserAdminApiController(UserService service)
-        {
-            _service = service;
-        }
-
         [HttpGet("/api/admin/user/")]
         public PaginatedResponse<IEnumerable<User>> GetAll(int pageNumber, int pageSize, string? keyword, bool isDeleted = false, bool isSuspended = false)
         {
@@ -52,36 +45,21 @@ namespace Tarumt.CC.Ecommerce.Controllers.UserControllers
         public async Task<ActionResult> Create(UserCreateAdminRequest userCreateRequest)
         {
             bool data = await _service.RegisterAsync(userCreateRequest);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
 
         [HttpPut("/api/admin/user/{id}/")]
         public async Task<ActionResult> UpdateById(string id, UserUpdateAdminRequest userUpdateRequest)
         {
             bool data = await _service.UpdateAsync((User)userUpdateRequest, id, false, false);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
 
         [HttpDelete("/api/admin/user/{id}/")]
         public async Task<ActionResult> DeleteById(string id)
         {
             bool data = await _service.DeleteAsync(id, false);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace Tarumt.CC.Ecommerce.Extensions
+namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class AuthenticationExtensions
     {

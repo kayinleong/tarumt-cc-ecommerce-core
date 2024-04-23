@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 
 #nullable disable
 
@@ -245,41 +245,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("ProductProductCategory");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCart", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime(6)");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<DateTime>("CreatedAt"));
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime(6)");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ProductCarts");
-                });
-
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.Product", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.Product", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -317,9 +283,6 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<string>("ProductCartId")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<string>("Remarks")
                         .HasColumnType("longtext");
 
@@ -341,12 +304,10 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.HasIndex("ProductCartId");
-
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.ProductCategory", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCategory", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -381,7 +342,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.ServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ServerSetting", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -405,9 +366,11 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
 
                     b.Property<string>("UserPortalServerSettingsId")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("UserServerSettingsId")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
@@ -419,7 +382,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("ServerSettings");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.User", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -511,7 +474,144 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserFile", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCard", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CardHolderName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<DateTime>("CreatedAt"));
+
+                    b.Property<string>("ExpiryDate")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCards");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCart", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<DateTime>("CreatedAt"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCarts");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCartItem", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<DateTime>("CreatedAt"));
+
+                    b.Property<decimal>("DiscountRate")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
+
+                    b.Property<string>("UserCartId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("UserOrderId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserCartId");
+
+                    b.HasIndex("UserOrderId");
+
+                    b.ToTable("UserCartItems");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserFile", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -550,7 +650,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("UserFiles");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserMfa", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserMfa", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -589,7 +689,41 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("UserMfas");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserPortalServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserOrder", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<DateTime>("CreatedAt"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserOrders");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserPortalServerSetting", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -626,7 +760,7 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.ToTable("UserPortalServerSettings");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.UserServerSetting", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserServerSetting", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -686,22 +820,52 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
 
             modelBuilder.Entity("ProductProductCategory", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.ProductCategory", null)
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCategory", null)
                         .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.Product", null)
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCart", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ServerSetting", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.User", "User")
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserPortalServerSetting", "UserPortalServerSettings")
+                        .WithMany()
+                        .HasForeignKey("UserPortalServerSettingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserServerSetting", "UserServerSettings")
+                        .WithMany()
+                        .HasForeignKey("UserServerSettingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserPortalServerSettings");
+
+                    b.Navigation("UserServerSettings");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", b =>
+                {
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserMfa", "UserMfa")
+                        .WithMany()
+                        .HasForeignKey("UserMfaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserMfa");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCard", b =>
+                {
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -710,37 +874,45 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.Product", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCart", b =>
                 {
-                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCart", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ProductCartId");
-                });
-
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.ServerSetting", b =>
-                {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.UserPortalServerSetting", "UserPortalServerSettings")
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserPortalServerSettingsId");
-
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.UserServerSetting", "UserServerSettings")
-                        .WithMany()
-                        .HasForeignKey("UserServerSettingsId");
-
-                    b.Navigation("UserPortalServerSettings");
-
-                    b.Navigation("UserServerSettings");
-                });
-
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Infrastructure.Models.User", b =>
-                {
-                    b.HasOne("Tarumt.CC.Ecommerce.Infrastructure.Models.UserMfa", "UserMfa")
-                        .WithMany()
-                        .HasForeignKey("UserMfaId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserMfa");
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCartItem", b =>
+                {
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCart", null)
+                        .WithMany("UserCartItems")
+                        .HasForeignKey("UserCartId");
+
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserOrder", null)
+                        .WithMany("UserCartItems")
+                        .HasForeignKey("UserOrderId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserOrder", b =>
+                {
+                    b.HasOne("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
@@ -755,9 +927,14 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
                     b.Navigation("Tokens");
                 });
 
-            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.ProductCart", b =>
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserCart", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("UserCartItems");
+                });
+
+            modelBuilder.Entity("Tarumt.CC.Ecommerce.Core.Infrastructure.Models.UserOrder", b =>
+                {
+                    b.Navigation("UserCartItems");
                 });
 #pragma warning restore 612, 618
         }

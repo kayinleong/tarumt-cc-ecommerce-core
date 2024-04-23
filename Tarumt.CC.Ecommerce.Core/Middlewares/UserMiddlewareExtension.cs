@@ -1,4 +1,4 @@
-﻿namespace Tarumt.CC.Ecommerce.Middlewares
+﻿namespace Tarumt.CC.Ecommerce.Core.Middlewares
 {
     public static class UserMiddlewareExtension
     {

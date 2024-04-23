@@ -1,4 +1,4 @@
-﻿namespace Tarumt.CC.Ecommerce.Constants
+﻿namespace Tarumt.CC.Ecommerce.Core.Constants
 {
     public enum GenderTypes
     {

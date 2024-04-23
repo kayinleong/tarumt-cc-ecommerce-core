@@ -1,23 +1,14 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Services
+namespace Tarumt.CC.Ecommerce.Core.Services
 {
-    public class ProductService
+    public class ProductService(ILogger<ProductService> _logger, CoreContext _context)
     {
-        private readonly ILogger<ProductService> _logger;
-        private readonly CoreContext _context;
-
-        public ProductService(ILogger<ProductService> logger, CoreContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
-
         public PagedList<Product> GetAll(int pageNumber, int pageSize, string keyword, bool isDeleted)
         {
             _logger.LogInformation($"[PRODUCT GET ALL] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
@@ -70,29 +61,62 @@ namespace Tarumt.CC.Ecommerce.Services
             }
         }
 
-        public PagedList<Product> GetAllByIsNotExpired(int pageNumber, int pageSize, string keyword, bool isDeleted)
+        public PagedList<ProductResponse> GetAllByIsNotExpiredResponse(int pageNumber, int pageSize, string keyword, bool isDeleted)
         {
             _logger.LogInformation($"[PRODUCT GET ALL BY IS NOT EXPIRED] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
 
             if (string.IsNullOrEmpty(keyword))
             {
-                return PagedList<Product>.ToPagedList(
+                return PagedList<ProductResponse>.ToPagedList(
                     _context.Set<Product>()
                         .Where(m => m.IsDeleted == isDeleted)
                         .Where(m => m.ExpiredAt < DateTime.Now)
                         .Include(m => m.Categories)
-                        .OrderBy(m => m.CreatedAt),
+                        .OrderBy(m => m.CreatedAt)
+                        .Select(m => (ProductResponse)m),
                     pageNumber, pageSize);
             }
             else
             {
-                return PagedList<Product>.ToPagedList(
+                return PagedList<ProductResponse>.ToPagedList(
                     _context.Set<Product>()
                         .Where(m => m.IsDeleted == isDeleted)
                         .Where(m => m.ExpiredAt < DateTime.Now)
                         .Where(m => m.Name.Contains(keyword))
                         .Include(m => m.Categories)
-                        .OrderBy(m => m.CreatedAt),
+                        .OrderBy(m => m.CreatedAt)
+                        .Select(m => (ProductResponse)m),
+                    pageNumber, pageSize);
+            }
+        }
+
+        public PagedList<ProductResponse> GetAllByIsNotAndCategoryExpired(int pageNumber, int pageSize, string keyword, string[] category, bool isDeleted)
+        {
+            _logger.LogInformation($"[PRODUCT GET ALL BY IS NOT EXPIRED AND CATEGORY] Page Number: {pageNumber}; Page Size: {pageSize}; Keyword: {keyword}");
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return PagedList<ProductResponse>.ToPagedList(
+                    _context.Set<Product>()
+                        .Where(m => m.IsDeleted == isDeleted)
+                        .Where(m => m.ExpiredAt < DateTime.Now)
+                        .Include(m => m.Categories)
+                        .Where(m => m.Categories.Any(m => category.Contains(m.Name)))
+                        .OrderBy(m => m.CreatedAt)
+                        .Select(m => (ProductResponse)m),
+                    pageNumber, pageSize);
+            }
+            else
+            {
+                return PagedList<ProductResponse>.ToPagedList(
+                    _context.Set<Product>()
+                        .Where(m => m.IsDeleted == isDeleted)
+                        .Where(m => m.ExpiredAt < DateTime.Now)
+                        .Where(m => m.Name.Contains(keyword))
+                        .Include(m => m.Categories)
+                        .Where(m => m.Categories.Any(m => category.Contains(m.Name)))
+                        .OrderBy(m => m.CreatedAt)
+                        .Select(m => (ProductResponse)m),
                     pageNumber, pageSize);
             }
         }
@@ -103,6 +127,17 @@ namespace Tarumt.CC.Ecommerce.Services
 
             return await _context.Products
                 .Where(m => m.IsDeleted == isDeleted)
+                .Include(m => m.Categories)
+                .SingleAsync(m => m.Id == id) ?? throw new InvalidOperationException("Product not found");
+        }
+
+        public async Task<Product> GetByIdIsNotExpiredAsync(string id, bool isDeleted)
+        {
+            _logger.LogInformation($"[PRODUCT BY ID IS NOT EXPIRED] ID: {id}");
+
+            return await _context.Products
+                .Where(m => m.IsDeleted == isDeleted)
+                .Where(m => m.ExpiredAt < DateTime.Now)
                 .Include(m => m.Categories)
                 .SingleAsync(m => m.Id == id) ?? throw new InvalidOperationException("Product not found");
         }
@@ -122,10 +157,6 @@ namespace Tarumt.CC.Ecommerce.Services
 
                     product.Categories.Add(category);
                 }
-            }
-            else
-            {
-                product.Categories.AddRange(productAdminRequest.Categories!.Select(m => (ProductCategory)m));
             }
 
             await _context.Products.AddAsync(product);
@@ -157,6 +188,19 @@ namespace Tarumt.CC.Ecommerce.Services
                     "M/d/yyyy",
                     CultureInfo.InvariantCulture)
                 : null;
+
+            currentProduct.Categories = new();
+            foreach (string categoryId in productAdminRequest.CategoriesId!)
+            {
+                ProductCategory category = await _context.ProductCategories
+                        .Where(m => !m.IsDeleted)
+                        .SingleAsync(m => m.Id == categoryId) ?? throw new InvalidOperationException("ProductCategory not found");
+
+                if (category != null)
+                {
+                    currentProduct.Categories.Add(category);
+                }
+            }
 
             _context.Products.Update(currentProduct);
             return await _context.SaveChangesAsync() != 0;

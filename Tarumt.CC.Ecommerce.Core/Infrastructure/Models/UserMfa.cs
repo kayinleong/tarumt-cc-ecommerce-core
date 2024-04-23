@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Tarumt.CC.Ecommerce.Constants;
+using Tarumt.CC.Ecommerce.Core.Constants;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Models
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Models
 {
     public class UserMfa : ModelBase
     {

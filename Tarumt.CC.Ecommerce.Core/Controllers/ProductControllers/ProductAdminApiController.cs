@@ -1,12 +1,11 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
+using Tarumt.CC.Ecommerce.Core.Services;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Controllers.BlogControllers
+namespace Tarumt.CC.Ecommerce.Core.Controllers.BlogControllers
 {
     [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [ApiController]
@@ -15,24 +14,17 @@ namespace Tarumt.CC.Ecommerce.Controllers.BlogControllers
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public class ProductAdminApiController : ControllerBase
+    public class ProductAdminApiController(ProductService _service) : ControllerBase
     {
-        private readonly ProductService _service;
-
-        public ProductAdminApiController(ProductService service)
-        {
-            _service = service;
-        }
-
         [HttpGet("/api/admin/product/")]
-        public PaginatedResponse<IEnumerable<Product>> GetAll(int pageNumber, int pageSize, string? keyword, bool isDeleted = false)
+        public PaginatedResponse<IEnumerable<ProductResponse>> GetAll(int pageNumber, int pageSize, string? keyword, bool isDeleted = false)
         {
-            PagedList<Product> data = _service.GetAll(pageNumber, pageSize, keyword, isDeleted);
-            IOrderedEnumerable<Product> blogs = data.OrderBy(m => m.CreatedAt);
+            PagedList<ProductResponse> data = _service.GetAllResponse(pageNumber, pageSize, keyword, isDeleted);
+            IOrderedEnumerable<ProductResponse> products = data.OrderBy(m => m.CreatedAt);
 
-            return new PaginatedResponse<IEnumerable<Product>>
+            return new PaginatedResponse<IEnumerable<ProductResponse>>
             {
-                Responses = blogs,
+                Responses = products,
                 CurrentPage = pageNumber,
                 TotalPages = data.TotalPages,
                 TotalCount = data.TotalCount,
@@ -42,9 +34,9 @@ namespace Tarumt.CC.Ecommerce.Controllers.BlogControllers
         }
 
         [HttpGet("/api/admin/product/{id}/")]
-        public async Task<Product> GetById(string id, bool isDeleted)
+        public async Task<ProductResponse> GetById(string id, bool isDeleted)
         {
-            Product data = await _service.GetByIdAsync(id, isDeleted);
+            ProductResponse data = (ProductResponse)await _service.GetByIdAsync(id, isDeleted);
             return data;
         }
 
@@ -52,36 +44,21 @@ namespace Tarumt.CC.Ecommerce.Controllers.BlogControllers
         public async Task<ActionResult> Create(ProductAdminRequest productAdminRequest)
         {
             bool data = await _service.CreateAsync(productAdminRequest);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
 
         [HttpPut("/api/admin/product/{id}/")]
         public async Task<ActionResult> Update(string id, ProductAdminRequest productAdminRequest)
         {
             bool data = await _service.UpdateAsync(productAdminRequest, id, false);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
 
         [HttpDelete("/api/admin/product/{id}/")]
         public async Task<ActionResult> Delete(string id)
         {
             bool data = await _service.DeleteAsync(id);
-            if (!data)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            return data ? Ok() : BadRequest();
         }
     }
 }

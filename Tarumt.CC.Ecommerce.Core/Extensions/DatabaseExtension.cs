@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Context;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 
-namespace Tarumt.CC.Ecommerce.Extensions
+namespace Tarumt.CC.Ecommerce.Core.Extensions
 {
     public static class DatabaseExtension
     {
@@ -12,7 +12,7 @@ namespace Tarumt.CC.Ecommerce.Extensions
                 case "MySql":
                     services.AddDbContextPool<CoreContext, CoreMySqlContext>(options =>
                     {
-                        string mySqlConnectionString = config.GetConnectionString("MySqlConnection")!;
+                        string mySqlConnectionString = $"Server=${Environment.GetEnvironmentVariable("DB_HOST")};Port=3306;Database=Dev_Tarumt_CC_Ecommerce_Core;User=ky;Password=${Environment.GetEnvironmentVariable("DB_KEY")}";
 
                         options.UseMySql(mySqlConnectionString, ServerVersion.AutoDetect(mySqlConnectionString));
                         options.UseOpenIddict();

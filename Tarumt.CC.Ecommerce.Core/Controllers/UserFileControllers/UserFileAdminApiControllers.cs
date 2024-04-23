@@ -1,12 +1,12 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Services;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Controllers.UserFileControllers
+namespace Tarumt.CC.Ecommerce.Core.Controllers.UserFileControllers
 {
     [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [ApiController]
@@ -15,20 +15,13 @@ namespace Tarumt.CC.Ecommerce.Controllers.UserFileControllers
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public class UserFileAdminApiControllers : ControllerBase
+    public class UserFileAdminApiControllers(UserFileService _service) : ControllerBase
     {
-        private readonly UserFileService _service;
-
-        public UserFileAdminApiControllers(UserFileService service)
-        {
-            _service = service;
-        }
-
         [HttpPost("/api/admin/user_file/")]
         public async Task<UserFileResponse> Create([FromForm] UserFileRequest userFileRequest)
         {
             UserFile data = await _service.Create(userFileRequest.file, "product/");
-            return (UserFile)data;
+            return data;
         }
     }
 }

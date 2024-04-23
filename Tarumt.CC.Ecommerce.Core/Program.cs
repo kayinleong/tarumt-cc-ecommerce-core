@@ -1,8 +1,7 @@
 using Microsoft.Extensions.Options;
 using Tarumt.CC.Ecommerce.Core.Extensions;
-using Tarumt.CC.Ecommerce.Extensions;
-using Tarumt.CC.Ecommerce.HostedService;
-using Tarumt.CC.Ecommerce.Middlewares;
+using Tarumt.CC.Ecommerce.Core.HostedService;
+using Tarumt.CC.Ecommerce.Core.Middlewares;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDatabasesConfig(builder.Configuration);
@@ -23,8 +22,8 @@ builder.Services.AddHostedService<UserHostedService>();
 builder.Services.AddHostedService<OpenIddictHostedService>();
 
 WebApplication app = builder.Build();
-app.UseHttpsRedirection();
-app.UseHsts();
+//app.UseHttpsRedirection();
+//app.UseHsts();
 app.UseCorsConfig();
 app.UseRouting();
 app.UseAuthentication();

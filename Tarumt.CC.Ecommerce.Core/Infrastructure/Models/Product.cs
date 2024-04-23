@@ -1,10 +1,10 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Requests.Admin;
-using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Requests.Admin;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Models
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Models
 {
     [Index(nameof(Name), IsUnique = true)]
     public class Product : ModelBase
@@ -75,9 +75,9 @@ namespace Tarumt.CC.Ecommerce.Infrastructure.Models
                 Price = product.Price,
                 DiscountRate = product.DiscountRate,
                 Description = product.Description,
-                ImageUrl= product.ImageUrl,
-                Categories = product.Categories
-                    .Select(m => (ProductCategoryResponse)m)
+                ImageUrl = product.ImageUrl,
+                CategoriesId = product.Categories
+                    .Select(m => m.Name)
                     .ToArray(),
                 StartAt = product.StartAt,
                 ExpiredAt = product.ExpiredAt,

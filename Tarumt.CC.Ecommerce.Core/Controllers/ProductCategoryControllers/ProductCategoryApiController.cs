@@ -1,7 +1,7 @@
-﻿using Ky.Web.CMS.SharedLibarary.Infrastructure.Responses;
-using Microsoft.AspNetCore.Mvc;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
-using Tarumt.CC.Ecommerce.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Services;
+using Tarumt.CC.Ecommerce.SharedLibrary.Infrastructure.Responses;
 
 namespace Tarumt.CC.Ecommerce.Core.Controllers.ProductCategoryControllers
 {
@@ -9,15 +9,8 @@ namespace Tarumt.CC.Ecommerce.Core.Controllers.ProductCategoryControllers
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public class ProductCategoryApiController
+    public class ProductCategoryApiController(ProductCategoryService _service)
     {
-        private readonly ProductCategoryService _service;
-
-        public ProductCategoryApiController(ProductCategoryService service)
-        {
-            _service = service;
-        }
-
         [HttpGet("/api/product_category/")]
         public PagedList<ProductCategoryResponse> GetAll(int pageNumber, int pageSize, string? keyword)
         {

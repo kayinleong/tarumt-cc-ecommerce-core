@@ -1,5 +1,4 @@
-﻿using Ky.Web.CMS.SharedLibarary.ViewModels;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -8,33 +7,23 @@ using Microsoft.Extensions.Primitives;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using System.Security.Claims;
-using Tarumt.CC.Ecommerce.Attributes;
-using Tarumt.CC.Ecommerce.Extensions;
-using Tarumt.CC.Ecommerce.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.Core.Attributes;
+using Tarumt.CC.Ecommerce.Core.Extensions;
+using Tarumt.CC.Ecommerce.Core.Infrastructure.Models;
+using Tarumt.CC.Ecommerce.SharedLibrary.ViewModels;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Tarumt.CC.Ecommerce.Controllers.OpenIDControllers
+namespace Tarumt.CC.Ecommerce.Core.Controllers.OpenIDControllers
 {
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public class OpenIDController : Controller
+    public class OpenIDController(
+        IOpenIddictApplicationManager _applicationManager,
+        IOpenIddictAuthorizationManager _authorizationManager,
+        IOpenIddictScopeManager _scopeManager) : Controller
     {
-        private readonly IOpenIddictApplicationManager _applicationManager;
-        private readonly IOpenIddictAuthorizationManager _authorizationManager;
-        private readonly IOpenIddictScopeManager _scopeManager;
-
-        public OpenIDController(
-            IOpenIddictApplicationManager applicationManager,
-            IOpenIddictAuthorizationManager authorizationManager,
-            IOpenIddictScopeManager scopeManager)
-        {
-            _applicationManager = applicationManager;
-            _authorizationManager = authorizationManager;
-            _scopeManager = scopeManager;
-        }
-
         [HttpPost("/connect/token")]
         public async Task<IActionResult> Token()
         {
