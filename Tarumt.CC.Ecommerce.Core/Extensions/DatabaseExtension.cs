@@ -12,7 +12,7 @@ namespace Tarumt.CC.Ecommerce.Core.Extensions
                 case "MySql":
                     services.AddDbContextPool<CoreContext, CoreMySqlContext>(options =>
                     {
-                        string mySqlConnectionString = $"Server={Environment.GetEnvironmentVariable("DB_HOST")};Port=3306;Database=Dev_Tarumt_CC_Ecommerce_Core;User=admin;Password={Environment.GetEnvironmentVariable("DB_KEY")}";
+                        string mySqlConnectionString = $"Server={Environment.GetEnvironmentVariable("DB_HOST")};Port=3306;Database=Dev_Tarumt_CC_Ecommerce_Core;User=ky;Password={Environment.GetEnvironmentVariable("DB_KEY")}";
                         options.UseMySql(mySqlConnectionString, ServerVersion.AutoDetect(mySqlConnectionString));
                         options.UseOpenIddict();
                     });

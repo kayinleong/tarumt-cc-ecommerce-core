@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Migrations\MySql\" />
     <Folder Include="wwwroot\files\organiser\" />
   </ItemGroup>
 

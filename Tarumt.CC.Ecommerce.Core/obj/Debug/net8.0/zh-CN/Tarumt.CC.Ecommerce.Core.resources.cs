@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tarumt.CC.Ecommerce.Core")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a41ec5c3a5c0a3bfae92ce74ab11cddd85f95cc2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee2894e867c0ce3b44832febe76ce2b91dbc0328")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tarumt.CC.Ecommerce.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tarumt.CC.Ecommerce.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

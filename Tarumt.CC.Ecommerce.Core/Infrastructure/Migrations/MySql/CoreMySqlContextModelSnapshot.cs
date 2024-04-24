@@ -8,7 +8,7 @@ using Tarumt.CC.Ecommerce.Core.Infrastructure.Context;
 
 #nullable disable
 
-namespace Tarumt.CC.Ecommerce.Infrastructure.Migrations.MySql
+namespace Tarumt.CC.Ecommerce.Core.Infrastructure.Migrations.MySql
 {
     [DbContext(typeof(CoreMySqlContext))]
     partial class CoreMySqlContextModelSnapshot : ModelSnapshot
