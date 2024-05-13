@@ -22,8 +22,8 @@ builder.Services.AddHostedService<UserHostedService>();
 builder.Services.AddHostedService<OpenIddictHostedService>();
 
 WebApplication app = builder.Build();
-//app.UseHttpsRedirection();
-//app.UseHsts();
+app.UseHsts();
+app.UseHttpsRedirection();
 app.UseCorsConfig();
 app.UseRouting();
 app.UseAuthentication();
