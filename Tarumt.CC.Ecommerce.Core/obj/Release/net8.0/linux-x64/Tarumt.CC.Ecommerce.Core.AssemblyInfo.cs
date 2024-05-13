@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tarumt.CC.Ecommerce.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03539a8d46b0909bc0e930365f576b13bfc436db")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+820388df9c5e999cd44378ca98789850d426f17d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tarumt.CC.Ecommerce.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tarumt.CC.Ecommerce.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
