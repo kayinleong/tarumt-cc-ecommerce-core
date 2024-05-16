@@ -1,8 +1,11 @@
 export const environment = {
   production: false,
-  baseUrl: 'https://localhost:8010',
+  baseUrl:
+    'https://tarumt-cc-ecommerce-lb-1156248740.us-east-1.elb.amazonaws.com',
   api: {
-    baseUrl: 'https://localhost:8010/api',
-    oidcUrl: 'https://localhost:8010',
+    baseUrl:
+      'https://tarumt-cc-ecommerce-lb-1156248740.us-east-1.elb.amazonaws.com/api',
+    oidcUrl:
+      'https://tarumt-cc-ecommerce-lb-1156248740.us-east-1.elb.amazonaws.com',
   },
 };

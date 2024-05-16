@@ -8,7 +8,7 @@
             {
                 options.AddPolicy("PRODUCTION", policyOptions =>
                 {
-                    policyOptions.WithOrigins("https://ec2-54-147-148-130.compute-1.amazonaws.com", "https://ec2-3-89-63-119.compute-1.amazonaws.com")
+                    policyOptions.WithOrigins("https://ec2-3-237-236-97.compute-1.amazonaws.com", "https://ec2-3-233-238-170.compute-1.amazonaws.com")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
