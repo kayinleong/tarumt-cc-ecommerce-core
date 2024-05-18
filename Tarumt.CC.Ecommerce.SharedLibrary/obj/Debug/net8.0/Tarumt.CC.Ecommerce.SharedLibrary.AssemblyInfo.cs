@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tarumt.CC.Ecommerce.SharedLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c2f33c1a5d284b6710b3d4c5bb813ed2af997e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1864a93c2095659f4a0be6f64770daf7305ea1f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tarumt.CC.Ecommerce.SharedLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tarumt.CC.Ecommerce.SharedLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
